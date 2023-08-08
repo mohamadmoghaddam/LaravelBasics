@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('loginform')
+<div>
+@if($name)    
+Thank you for sending a message  {{$name}}.
+@endif
+</div>
 <h1>Contact Us</h1>
 <form action="/submitmessage" method="post">
     <label for="name">Name</label>

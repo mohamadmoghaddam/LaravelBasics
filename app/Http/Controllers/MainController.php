@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function create()
-    {
-        return view('aboutUs');
+    public function create($name=null)
+    {   
+        return view('aboutUs', [
+            'name' => $name
+        ]);
     }
 
     public function store(Request $request)
@@ -17,9 +20,11 @@ class MainController extends Controller
             'name' => 'required|max:20',
             'title' => 'required|max:20'
         ]);
-        $name = $request -> name;
-        $title = $request -> title;
-        $message = $request -> message;
-        dump([$name, $title, $message]);
+        Message::create([
+            'name' => $request -> name,
+            'title' => $request -> title,
+            'message' => $request -> message
+        ]);
+        return redirect('/submitted/'. ($request -> name));
     }
 }
