@@ -10,3 +10,6 @@ Route::get('/submitted/{name}', [MainController::class, 'create']);
 Route::get('/messages', [MainController::class, 'index']);
 Route::get('/delete/{id}', [MainController::class, 'delete']);
 Route::get('/deleted/{id}', [MainController::class, 'index']);
+Route::get('/edit/{id}', [MainController::class, 'show']);
+Route::post('/editmessage/{id}', [MainController::class, 'update']);
+Route::get('/edited/{id}', [MainController::class, 'index']);

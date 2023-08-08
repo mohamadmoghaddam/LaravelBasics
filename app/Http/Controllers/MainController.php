@@ -27,12 +27,12 @@ class MainController extends Controller
         ]);
         return redirect('/submitted/'. ($request -> name));
     }
-    public function index($deletedId=null)
+    public function index($modifiedId=null)
     {
         $messages = Message::get();
         return view('messages', [
             'messages' => $messages,
-            'deletedId' => $deletedId
+            'modifiedId' => $modifiedId
         ]);
     }
     public function delete($id)
@@ -40,5 +40,26 @@ class MainController extends Controller
         $message = Message::find($id);
         $message -> delete();
         return redirect('/deleted/'. $id);
+    }
+
+    public function show($id)
+    {
+        $message = Message::find($id);
+        return view('editMessage', [
+            'message' => $message,
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $this -> validate($request, [
+            'name' => 'required|max:20',
+            'title' => 'required|max:20'
+        ]);
+        $message = Message::find($id);
+        $message -> update([
+        'name' => $request -> name,
+        'title' => $request -> title,
+        'message' => $request -> message]);
+        return redirect('/edited/'. $id);
     }
 }

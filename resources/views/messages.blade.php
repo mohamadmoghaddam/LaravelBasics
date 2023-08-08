@@ -3,19 +3,27 @@
 @section('loginform')
 <h1>Messages</h1>
 <hr>
-@if($deletedId)    
-Successfully deleted  {{$deletedId}}.
-<hr>
+@if($modifiedId)    
+    Successfully modified {{$modifiedId}}.
+    <hr>
 @endif
 @if(count($messages))
 @foreach($messages as $message)
-<div>
-    {{$message['name']}} SAID: <br> {{$message['title']}}:  {{$message['message']}} <a href="/delete/{{$message['id']}}"><div class="container">
-<p>Delete</p>
-</div></a>
-</div>
-<hr>
+    <div>
+        {{$message['name']}} SAID: <br> {{$message['title']}}:  {{$message['message']}} <div class="container">
+    <a href="/delete/{{$message['id']}}">
+    <p>Delete</p>
+    </a>
+    <a href="/edit/{{$message['id']}}">
+    <p>Edit</p>
+    </a>
+    </div>
+    </div>
+    <hr>
 @endforeach
+@else
+    <h3>NO POSTS.......................................</h3>
+    <hr>
 @endif
 <div data-type="dot_art" class="emojis" style="font-size:max(min(1rem, 1.6vw, calc(1.6*var(--main-column-max-width)/100)), 0.5rem); text-align:left; white-space:pre;" spellcheck="false">
     <a href="/">Make a new message here(Never should've come here >:[ )</a>
@@ -46,6 +54,8 @@ Successfully deleted  {{$deletedId}}.
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣄⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⣠⡄⠀⣿⢹⡇⢸⡀⠀⠈⠻⢿⣿⣿⣿⣿⣿⣿
 <h3>    WHY ARE YOU HERE?</h3>
 </div>
+
+
 @endsection
 
 

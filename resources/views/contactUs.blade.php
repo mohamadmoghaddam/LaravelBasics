@@ -21,7 +21,7 @@ Thank you for sending a message  {{$name}}.
     @enderror
     <br>
     <label for="name">Message</label>
-    <div><textarea name="message" cols="30" rows="10" value="{{old('message')}}"></textarea></div>
+    <div><textarea name="message" cols="30" rows="10">{{old('message')}}</textarea></div>
     @csrf
     <input type="submit" value="submit">
 </form>
