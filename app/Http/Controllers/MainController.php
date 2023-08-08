@@ -6,8 +6,20 @@ use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function __invoke()
+    public function create()
     {
-        return view('mainpage');
+        return view('aboutUs');
+    }
+
+    public function store(Request $request)
+    {
+        $this -> validate($request, [
+            'name' => 'required|max:20',
+            'title' => 'required|max:20'
+        ]);
+        $name = $request -> name;
+        $title = $request -> title;
+        $message = $request -> message;
+        dump([$name, $title, $message]);
     }
 }
