@@ -9,7 +9,7 @@ class MainController extends Controller
 {
     public function create($name=null)
     {   
-        return view('aboutUs', [
+        return view('contactUs', [
             'name' => $name
         ]);
     }
@@ -26,5 +26,11 @@ class MainController extends Controller
             'message' => $request -> message
         ]);
         return redirect('/submitted/'. ($request -> name));
+    }
+    public function index(){
+        $messages = Message::get();
+        return view('messages', [
+            'messages' => $messages
+        ]);
     }
 }
