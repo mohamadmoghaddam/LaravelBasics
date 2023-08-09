@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function create($submittedName=null)
-    {   
+    {
         return view('contactUs', [
             'name' => $submittedName
         ]);
@@ -27,39 +27,34 @@ class MainController extends Controller
         ]);
         return redirect('/submitted/'. ($request -> name));
     }
-    public function index($modifiedId=null)
+    public function index(Message $editedmessage=null)
     {
         $messages = Message::get();
         return view('messages', [
             'messages' => $messages,
-            'modifiedId' => $modifiedId
+            'editedmessage' => $editedmessage
         ]);
     }
-    public function delete($id)
+    public function destroy(Message $message)
     {
-        $message = Message::find($id);
         $message -> delete();
-        return redirect('/deleted/'. $id);
+        return redirect('/deleted/' . $message['id']);
     }
 
-    public function show($id)
+    public function edit(Message $message)
     {
-        $message = Message::find($id);
         return view('editMessage', [
             'message' => $message,
         ]);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, Message $message)
     {
         $this -> validate($request, [
-            'name' => 'required|max:20',
             'title' => 'required|max:20'
         ]);
-        $message = Message::find($id);
         $message -> update([
-        'name' => $request -> name,
         'title' => $request -> title,
         'message' => $request -> message]);
-        return redirect('/edited/'. $id);
+        return redirect('/edited/'. $message['id']);
     }
 }
