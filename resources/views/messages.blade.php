@@ -3,12 +3,12 @@
 @section('loginform')
 <h1>Messages</h1>
 <hr>
-@if($editedmessage)
+@if($modifiedId)
     Successfully
     <?php $url = explode('/',url()->current());
     echo $url[3];
     ?>
-    message {{$editedmessage['title']}} SAID BY {{$editedmessage['name']}}.
+    Post id:{{$modifiedId}}.
     <hr>
 @endif
 @if(count($messages))

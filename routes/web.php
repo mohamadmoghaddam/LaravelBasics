@@ -12,4 +12,4 @@ Route::delete('messages/{message}', [MainController::class, 'destroy']);
 Route::get('/deleted/{id}', [MainController::class, 'index']);
 Route::get('/edit/{message}', [MainController::class, 'edit']);
 Route::patch('/editmessage/{message}', [MainController::class, 'update']);
-Route::get('/edited/{editedmessage}', [MainController::class, 'index']);
+Route::get('/edited/{id}', [MainController::class, 'index']);

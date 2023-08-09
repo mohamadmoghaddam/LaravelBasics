@@ -27,12 +27,12 @@ class MainController extends Controller
         ]);
         return redirect('/submitted/'. ($request -> name));
     }
-    public function index(Message $editedmessage=null)
+    public function index($modifiedId=null)
     {
         $messages = Message::get();
         return view('messages', [
             'messages' => $messages,
-            'editedmessage' => $editedmessage
+            'modifiedId' => $modifiedId
         ]);
     }
     public function destroy(Message $message)
