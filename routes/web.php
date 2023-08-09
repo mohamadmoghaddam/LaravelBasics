@@ -8,7 +8,7 @@ Route::get('/contactUs', [MainController::class, 'create']);
 Route::post('/submitmessage', [MainController::class, 'store']);
 Route::get('/submitted/{name}', [MainController::class, 'create']);
 Route::get('/messages', [MainController::class, 'index']);
-Route::get('/delete/{id}', [MainController::class, 'delete']);
+Route::delete('messages/{id}', [MainController::class, 'delete']);
 Route::get('/deleted/{id}', [MainController::class, 'index']);
 Route::get('/edit/{id}', [MainController::class, 'show']);
 Route::patch('/editmessage/{id}', [MainController::class, 'update']);

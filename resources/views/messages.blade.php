@@ -4,16 +4,22 @@
 <h1>Messages</h1>
 <hr>
 @if($modifiedId)    
-    Successfully modified {{$modifiedId}}.
+    Successfully    
+    <?php $url = explode('/',url()->current());
+    echo $url[3];
+    ?>
+    {{$modifiedId}}.
     <hr>
 @endif
 @if(count($messages))
 @foreach($messages as $message)
     <div>
         {{$message['name']}} SAID: <br> {{$message['title']}}:  {{$message['message']}} <div class="container">
-    <a href="/delete/{{$message['id']}}">
-    <p>Delete</p>
-    </a>
+    <form action="/messages/{{$message['id']}}" method="POST">
+    @csrf
+    @method('DELETE')
+    <p><input type="submit" class="btn btn-danger" value="DELETE"></p>
+    </form>
     <a href="/edit/{{$message['id']}}">
     <p>Edit</p>
     </a>
