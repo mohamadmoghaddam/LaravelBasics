@@ -2,7 +2,8 @@
 
 @section('loginform')
 <h1>Edit Message</h1>
-<form action="/editmessage/{{$message['id']}}" method="post">
+<form action="/editmessage/{{$message['id']}}" method="POST">
+    @method('PATCH')
     <label for="name">Name</label>
     <div><input type="text" value="{{$message['name']}}" name="name" placeholder="Your Name"></div>
     @error('name')
